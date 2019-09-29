@@ -1,0 +1,8 @@
+{
+  "name": "BitfinexTickerCollector",
+  "version": "0.0.1",
+  "dependencies": {
+    "bitfinex-api-node": "^2.0.10",
+    "csv-writer": "^1.5.0"
+  }
+}
