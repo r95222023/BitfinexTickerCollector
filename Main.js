@@ -1,8 +1,8 @@
 // const os = require('os');
 const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 const BFX = require('bitfinex-api-node');
-const collectTimeInterval= 10000;
-const collectNumber= 99;
+const collectTimeInterval= 20000;
+const collectNumber= 999;
 
 
 const bfx = new BFX({
