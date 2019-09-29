@@ -53,10 +53,13 @@ async function writeCsv(data){
 (async ()=>{
     let table = [];
     setInterval(async ()=>{
+        const now = (new Date()).getTime();
         const tickerData = await getTickerData('tBTCUSD');
         table.push(tickerData);
+        if(table.length%10===0){
+            console.log('Collecting data: '+now);
+        }
         if(table.length>collectNumber){
-            console.log(table);
             await writeCsv(table);
             table=[];
         }
