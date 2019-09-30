@@ -3,7 +3,7 @@ const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 const BFX = require('bitfinex-api-node');
 const collectTimeInterval= 20000;
 const collectNumber= 999;
-
+const port = 80;
 const bfx = new BFX({
     apiKey: '',
     apiSecret: '',
@@ -57,9 +57,10 @@ async function initFileServer(){
         await handler(request, response);
     };
 
-    require('http')
+    await require('http')
         .createServer(serveDirectory)
-        .listen(8088);
+        .listen(port);
+    console.log('Listening port '+port);
 }
 (async ()=>{
     let table = [];
