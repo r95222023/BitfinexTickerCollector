@@ -4,7 +4,6 @@ const BFX = require('bitfinex-api-node');
 const collectTimeInterval= 20000;
 const collectNumber= 999;
 
-
 const bfx = new BFX({
     apiKey: '',
     apiSecret: '',
@@ -50,6 +49,18 @@ async function writeCsv(data){
         .writeRecords(data);
     console.log('The CSV file was written successfully at '+now)
 }
+
+async function initFileServer(){
+    const handler = require('serve-handler');
+
+    const serveDirectory= async (request, response) => {
+        await handler(request, response);
+    };
+
+    require('http')
+        .createServer(serveDirectory)
+        .listen(8080);
+}
 (async ()=>{
     let table = [];
     setInterval(async ()=>{
@@ -63,7 +74,9 @@ async function writeCsv(data){
             await writeCsv(table);
             table=[];
         }
-    }, collectTimeInterval)
+    }, collectTimeInterval);
+
+    await initFileServer();
 })();
 
 
