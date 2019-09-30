@@ -59,7 +59,7 @@ async function initFileServer(){
 
     require('http')
         .createServer(serveDirectory)
-        .listen(8080);
+        .listen(8088);
 }
 (async ()=>{
     let table = [];
