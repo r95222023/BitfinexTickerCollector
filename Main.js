@@ -57,9 +57,14 @@ async function initFileServer(){
         await handler(request, response);
     };
 
-    await require('http')
-        .createServer(serveDirectory)
-        .listen(port);
+    const server=await require('http')
+        .createServer(serveDirectory);
+    server.listen(port);
+
+    setInterval(async ()=>{
+        await server.close();
+        await server.listen(port)
+    }, (collectNumber+1)*collectTimeInterval);
     console.log('Listening port '+port);
 }
 (async ()=>{
